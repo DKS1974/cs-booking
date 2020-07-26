@@ -16,7 +16,7 @@ public class DistributionController {
     @Autowired
     private DistributionService distributionService ;
 
-        @GetMapping("/distribution")
+    @GetMapping("/distribution")
     @ResponseBody
     public List<Distribution> getDistributionsByBookId(@RequestParam(required = true) Long bookId) {
         return distributionService.getDistributionsByBookId(bookId) ;

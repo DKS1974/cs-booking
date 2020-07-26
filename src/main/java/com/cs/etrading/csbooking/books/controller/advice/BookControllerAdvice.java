@@ -16,32 +16,30 @@ public class BookControllerAdvice  {
     @ExceptionHandler(BookNameExistsException.class)
     public ResponseEntity handelEntityExistsException(BookNameExistsException exception, HttpServletRequest request) {
         String errorMessage = "Error executing %s on %s - %s" ;
-        Response response = Response.builder()
-                .errorMessage(
-                        String.format(errorMessage, request.getMethod(), request.getRequestURI(), exception.getMessage()) )
-                .build() ;
+        Response response = buildResponse(request, errorMessage, exception.getMessage());
         return ResponseEntity.status(HttpStatus.CONFLICT).body(response) ;
     }
 
     @ExceptionHandler(BookNotFoundException.class)
     public ResponseEntity handelBookNotFoundException(BookNotFoundException exception, HttpServletRequest request) {
         String errorMessage = "Error executing %s on %s - %s" ;
-        Response response = Response.builder()
-                .errorMessage(
-                        String.format(errorMessage, request.getMethod(), request.getRequestURI(), exception.getMessage()) )
-                .build() ;
+        Response response = buildResponse(request, errorMessage, exception.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response) ;
     }
 
     @ExceptionHandler(BookClosedException.class)
     public ResponseEntity handelBookClosedException(BookClosedException exception, HttpServletRequest request) {
         String errorMessage = "Error executing %s on %s - %s" ;
-        Response response = Response.builder()
-                .errorMessage(
-                        String.format(errorMessage, request.getMethod(), request.getRequestURI(), exception.getMessage()) )
-                .build() ;
+        Response response = buildResponse(request, errorMessage, exception.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response) ;
     }
 
+
+    private Response buildResponse(HttpServletRequest request, String errorMessage, String message) {
+        return Response.builder()
+                .errorMessage(
+                        String.format(errorMessage, request.getMethod(), request.getRequestURI(), message))
+                .build();
+    }
 
 }

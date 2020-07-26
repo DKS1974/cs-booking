@@ -88,4 +88,29 @@ public class BookService {
     public boolean isClosed(Long bookId) throws BookNotFoundException {
         return fetchBook(bookId).getClosedDt() != null  ;
     }
+
+    public BookRepository getBookRepository() {
+        return bookRepository;
+    }
+
+    public void setBookRepository(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
+
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
+
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
+    public DistributionService getDistributionService() {
+        return distributionService;
+    }
+
+
+    public void setDistributionService(DistributionService distributionService) {
+        this.distributionService = distributionService;
+    }
 }

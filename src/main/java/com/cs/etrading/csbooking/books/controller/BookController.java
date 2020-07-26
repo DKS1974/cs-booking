@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.ws.rs.Path;
 import java.util.List;
 
 @RestController
@@ -33,7 +34,7 @@ public class BookController {
         return bookService.fetchBooksByName(bookName) ;
     }
 
-    @GetMapping ("/book")
+    @GetMapping
     @ResponseBody
     public List<Book> getAllBooks()  {
         return bookService.fetchAllBooks() ;
