@@ -34,7 +34,7 @@ public class BookController {
         return bookService.fetchBooksByName(bookName) ;
     }
 
-    @GetMapping
+    @GetMapping("/book")
     @ResponseBody
     public List<Book> getAllBooks()  {
         return bookService.fetchAllBooks() ;
